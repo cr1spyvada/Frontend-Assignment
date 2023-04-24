@@ -86,7 +86,7 @@ export default function Home() {
   let advToggle =
     schema.filter((field) => field?.validate?.required === true).length > 0;
   return (
-    <Container maxWidth="xl" className="bg-white min-h-screen flex p-4 gap-2">
+    <Stack direction="row" className="bg-white min-h-screen flex p-4 gap-2">
       <div className="flex-[3] min-h-full">
         <Editor changeSchema={changeSchema} />
       </div>
@@ -126,6 +126,6 @@ export default function Home() {
           </ActiveTab.Provider>
         </AdvanceFieldToggle.Provider>
       </Box>
-    </Container>
+    </Stack>
   );
 }
