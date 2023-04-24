@@ -34,4 +34,15 @@ export interface GroupField extends BaseField {
   subParameters: UIType[];
 }
 
+export interface IgnoreField extends GroupField {
+  conditions: [
+    {
+      jsonKey: string;
+      op: string;
+      value: string;
+      action: string;
+    }
+  ];
+}
+
 export type UIType = TextBoxField | BaseField;

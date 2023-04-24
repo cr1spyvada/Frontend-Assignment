@@ -1,13 +1,21 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Box, Container } from "@mui/material";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { Editor } from "@/components/Editor";
 import { DynamicForm } from "@/components/DynamicForm";
 import { UIType } from "@/types/UIType";
 
+type TabContextType = {
+  activeTab: { [key: string]: string };
+  setActiveTab: React.Dispatch<React.SetStateAction<{}>>;
+};
+
+export const ActiveTab = createContext<TabContextType | undefined>(undefined);
+
 export default function Home() {
   const [schema, setSchema] = useState<UIType[]>([]);
+  const [activeTab, setActiveTab] = useState({});
 
   const changeSchema = (newSchema: string) => {
     try {
@@ -39,7 +47,11 @@ export default function Home() {
         <Editor changeSchema={changeSchema} />
       </div>
       <Box className="flex-[7] min-h-full">
-        <DynamicForm schema={schema} />
+        <ActiveTab.Provider value={{ activeTab, setActiveTab }}>
+          <form>
+            <DynamicForm schema={schema} />
+          </form>
+        </ActiveTab.Provider>
       </Box>
     </Container>
   );
