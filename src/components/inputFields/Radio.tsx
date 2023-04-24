@@ -27,12 +27,6 @@ export const RadioGroupField = ({ fieldData }: RadioFieldProps) => {
   } = fieldData;
   const tabContext = useContext(ActiveTab);
   
-  const handleChange = (_, newValue: string) => {
-    tabContext?.setActiveTab({
-      ...tabContext?.activeTab,
-      [jsonKey]: newValue,
-    });
-  };
 
   useEffect(() => {
     tabContext?.setActiveTab({
@@ -48,7 +42,12 @@ export const RadioGroupField = ({ fieldData }: RadioFieldProps) => {
         className="w-full basis-full flex flex-wrap"
         value={tabContext?.activeTab[jsonKey]}
         exclusive
-        onChange={handleChange}
+        onChange={(_, newValue: string) => {
+          tabContext?.setActiveTab({
+            ...tabContext?.activeTab,
+            [jsonKey]: newValue,
+          });
+        }}
         aria-label="text alignment"
       >
         {options?.map((field, idx) => (

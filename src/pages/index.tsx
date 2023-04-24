@@ -39,7 +39,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState({});
   const [advancedFieldsVisible, setAdvancedFieldsVisible] =
     useState<boolean>(false);
-  const [formData, setFormData] = useState<FormData>(new FormData());
+  const [formData, setFormData] = useState({});
 
   const changeSchema = (newSchema: string) => {
     try {
@@ -71,7 +71,7 @@ export default function Home() {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    formData.set(name, value);
+    // formData.append(name, value);
     setFormData(formData);
     // setFormData({ ...formData, [name]: value });
   };

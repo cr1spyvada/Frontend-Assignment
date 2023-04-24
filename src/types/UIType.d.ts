@@ -35,20 +35,18 @@ export interface GroupField extends BaseField {
 }
 
 export interface IgnoreField extends GroupField {
-  conditions: [
-    {
-      jsonKey: string;
-      op: string;
-      value: string;
-      action: string;
-    }
-  ];
+  conditions: {
+    jsonKey: string;
+    op: string;
+    value: string;
+    action: string;
+  }[];
 }
 export interface SwitchField extends BaseField {
   validate: {
     required: boolean;
     immutable?: boolean;
-    defaultValue: boolean | string;
+    defaultValue: boolean | undefined;
   };
 }
 export type UIType =

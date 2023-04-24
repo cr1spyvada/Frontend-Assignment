@@ -16,9 +16,8 @@ const Dropdown = ({ fieldData }: RadioFieldProps) => {
   const [selectedValue, setValue] = useState(defaultValue);
   const outputContext = useContext(OutputContext);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
-    outputContext?.handleInputChange(event);
   };
 
   useEffect(() => {}, [selectedValue]);

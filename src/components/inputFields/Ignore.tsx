@@ -19,10 +19,11 @@ export const Ignore = ({ fieldData }: IgnoreFieldProps) => {
     //   "->",
     //   condition.jsonKey.split(".").at(-1)
     // );
+    const searchString = condition.jsonKey.split(".").at(-1);
     check =
       check &&
       condition.value ===
-        tabContext?.activeTab[condition.jsonKey?.split(".")?.at(-1)];
+        tabContext?.activeTab[searchString ?? condition.jsonKey];
   });
   if (!check) return <></>;
   return <Group fieldData={otherProps as GroupField} />;
