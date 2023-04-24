@@ -44,5 +44,17 @@ export interface IgnoreField extends GroupField {
     }
   ];
 }
-
-export type UIType = TextBoxField | BaseField;
+export interface SwitchField extends BaseField {
+  validate: {
+    required: boolean;
+    immutable?: boolean;
+    defaultValue: boolean | string;
+  };
+}
+export type UIType =
+  | TextBoxField
+  | RadioField
+  | GroupField
+  | IgnoreField
+  | SwitchField
+  | BaseField;

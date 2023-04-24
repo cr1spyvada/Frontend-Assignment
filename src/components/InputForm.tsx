@@ -2,6 +2,7 @@ import {
   GroupField,
   IgnoreField,
   RadioField,
+  SwitchField,
   TextBoxField,
   UIType,
 } from "@/types/UIType";
@@ -11,6 +12,8 @@ import { TextBox } from "./inputFields/TextBox";
 import { Group } from "./inputFields/Group";
 import { RadioGroupField } from "./inputFields/Radio";
 import { Ignore } from "./inputFields/Ignore";
+import Dropdown from "./inputFields/Dropdown";
+import { SwitchToggle } from "./inputFields/SwitchToggle";
 
 interface InputFormProps {
   fieldData: UIType;
@@ -18,7 +21,6 @@ interface InputFormProps {
 
 export const InputForm = ({ fieldData }: InputFormProps) => {
   const { uiType, ...otherProps } = fieldData;
-  console.log({ uiType });
   switch (uiType) {
     case "Input":
       return <TextBox fieldData={otherProps as TextBoxField} />;
@@ -28,6 +30,10 @@ export const InputForm = ({ fieldData }: InputFormProps) => {
       return <RadioGroupField fieldData={otherProps as RadioField} />;
     case "Ignore":
       return <Ignore fieldData={otherProps as IgnoreField} />;
+    case "Select":
+      return <Dropdown fieldData={otherProps as RadioField} />;
+    case "Switch":
+      return <SwitchToggle fieldData={otherProps as SwitchField} />;
     default:
       return <></>;
   }

@@ -26,12 +26,21 @@ export const RadioGroupField = ({ fieldData }: RadioFieldProps) => {
     validate: { options, defaultValue },
   } = fieldData;
   const tabContext = useContext(ActiveTab);
+  
+  const handleChange = (_, newValue: string) => {
+    tabContext?.setActiveTab({
+      ...tabContext?.activeTab,
+      [jsonKey]: newValue,
+    });
+  };
+
   useEffect(() => {
     tabContext?.setActiveTab({
       ...tabContext?.activeTab,
       [jsonKey]: defaultValue,
     });
   }, []);
+
   return (
     <div className="bg-[#f0f7ff] border rounded-lg p-4 gap-2 flex flex-col">
       <TitleBar field={fieldData} />
@@ -39,14 +48,7 @@ export const RadioGroupField = ({ fieldData }: RadioFieldProps) => {
         className="w-full basis-full flex flex-wrap"
         value={tabContext?.activeTab[jsonKey]}
         exclusive
-        onChange={(_, newValue) => {
-          console.log("clicked");
-          tabContext?.setActiveTab({
-            ...tabContext?.activeTab,
-            [jsonKey]: newValue,
-          });
-          console.log({ activeTab: tabContext?.activeTab });
-        }}
+        onChange={handleChange}
         aria-label="text alignment"
       >
         {options?.map((field, idx) => (

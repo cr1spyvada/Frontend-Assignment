@@ -9,7 +9,7 @@ interface TextBoxProps {
 }
 
 export const Group = ({ fieldData }: TextBoxProps) => {
-  const { subParameters, jsonKey, level } = fieldData;
+  const { subParameters, level } = fieldData;
   const sortedSubParameters = subParameters.sort(function (
     a: UIType,
     b: UIType
@@ -24,11 +24,6 @@ export const Group = ({ fieldData }: TextBoxProps) => {
     >
       <TitleBar field={fieldData} />
       <DynamicForm schema={sortedSubParameters} />
-      {/* {sortedSubParameters?.map((data: UIType, idx) => (
-        <div key={jsonKey}>
-          <DynamicForm fieldData={[data]} />
-        </div>
-      ))} */}
     </div>
   );
 };
